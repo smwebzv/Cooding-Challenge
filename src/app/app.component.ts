@@ -91,8 +91,9 @@ export class AppComponent {
   getElementGroupForSpecStep() {
     if (this.currentStep == 1) {
       // On step one return all elements in main search box and mark them with red color
+      const mainWraper = document.getElementById("app")?.children[0];
       return {
-        collection: document.querySelectorAll('.todo-wrapper *'),
+        collection: mainWraper!.querySelectorAll('*'),
         color: 'red',
       };
     } else {
@@ -234,7 +235,7 @@ export class AppComponent {
    * changing current step to 1 will move to next screen
    */
   startLoop() {
-    const mainWraper = document.querySelector('.todo-wrapper');
+    const mainWraper = document.getElementById("app")?.children[0];
     this.addEventListeners(mainWraper!);
     this.currentStep = 1;
   }
@@ -291,7 +292,7 @@ export class AppComponent {
     }
 
     // Remove all listeners from main wraper so we dont predict elements anymore
-    const mainWraper = document.querySelector('.todo-wrapper');
+    const mainWraper = document.getElementById("app")?.children[0];
 
     this.removeEventListeners(mainWraper!);
 
@@ -443,7 +444,7 @@ export class AppComponent {
    */
   resetFirstStep() {
     this.currentStep = 0;
-    const mainWraper = document.querySelector('.todo-wrapper');
+    const mainWraper = document.getElementById("app")?.children[0];
     this.removeEventListeners(mainWraper!);
     this.resetAllValues();
   }
